@@ -1,0 +1,18 @@
+<div class="dashboard-container">
+    <div class="chart-wrapper">
+      <app-line-chart 
+        [options]="lineChartOptions"
+        [series]="lineChartSeries"
+        width="100%"
+        height="400px">
+      </app-line-chart>
+    </div>
+    <div class="chart-wrapper">
+      <app-bar-chart 
+        [options]="barChartOptions"
+        [series]="barChartSeries"
+        width="100%"
+        height="400px">
+      </app-bar-chart>
+    </div>
+  </div>
