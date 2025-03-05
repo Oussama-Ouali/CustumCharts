@@ -6,7 +6,6 @@ export interface ChartOptions {
     legend?: {
       show: boolean;
       position: 'top' | 'bottom';
-      data?: DataPoint[];
     };
     grid?: {
       top: number;

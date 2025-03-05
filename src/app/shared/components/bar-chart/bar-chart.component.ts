@@ -2,13 +2,14 @@ import { Component, Input, OnChanges, SimpleChanges, ElementRef } from '@angular
 import { NgxEchartsDirective } from 'ngx-echarts';
 import { EChartsOption } from 'echarts';
 import { ChartOptions, SeriesData } from '../../../core/interfaces/chart-options';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-bar-chart',
   templateUrl: './bar-chart.component.html',
   styleUrl: './bar-chart.component.scss',
   standalone: true,
-  imports: [NgxEchartsDirective]
+  imports: [CommonModule, NgxEchartsDirective]
 })
 export class BarChartComponent implements OnChanges {
   @Input() options!: ChartOptions;

@@ -9,7 +9,7 @@ import { ChartOptions, SeriesData } from '../../core/interfaces/chart-options';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   standalone: true,
-  imports: [LineChartComponent, BarChartComponent] // Ensure both components are imported here
+  imports: [LineChartComponent, BarChartComponent],
 })
 export class DashboardComponent implements OnInit {
   lineChartOptions: ChartOptions = {};
