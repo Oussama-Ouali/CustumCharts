@@ -58,7 +58,8 @@ export class LineChartComponent implements OnChanges {
           fontSize: 14,
           fontWeight: 'bold',
           color: '#333'
-        }
+        },
+        padding: [0, 0, 20, 0]
       },
       tooltip: {
         trigger: 'axis',
@@ -68,7 +69,7 @@ export class LineChartComponent implements OnChanges {
       },
       legend: {
         show: legend.show,
-        top: legend.position === 'top' ? 'top' : 'bottom',
+        top: legend.position === 'top' ? 20 : 'bottom',
         data: this.series.map(s => s.name),
         textStyle: {
           color: '#666'
