@@ -107,7 +107,7 @@ export class BarChartComponent implements OnChanges {
         },
         axisLine: {
           lineStyle: {
-            color: '#666',
+            color: '#cc',
             width: 2
           }
         },
@@ -152,7 +152,7 @@ export class BarChartComponent implements OnChanges {
       series: this.series.map(s => ({
         name: s.name,
         type: 'bar',
-        barWidth: '25%',
+        barWidth: '20%',
         barGap: '10%',
         itemStyle: {
           borderRadius: [4, 4, 0, 0],

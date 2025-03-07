@@ -13,6 +13,8 @@ export interface ChartOptions {
       left: string;
       right: string;
     };
+    color?: string[];
+    otherOptions?: any;
   }
   
   export interface DataPoint {

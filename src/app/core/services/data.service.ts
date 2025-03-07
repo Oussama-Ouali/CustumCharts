@@ -28,6 +28,17 @@ export class DataService {
           { name: 'May', value: 28 },
           { name: 'Jun', value: 48 }
         ]
+      },
+      {
+        name: 'cost',
+        data: [
+          { name: 'Jan', value: 35 },
+          { name: 'Feb', value: 32 },
+          { name: 'Mar', value: 57 },
+          { name: 'Apr', value: 84 },
+          { name: 'May', value: 28 },
+          { name: 'Jun', value: 68 }
+        ]
       }
     ];
   }
@@ -50,6 +61,17 @@ export class DataService {
           { name: 'Product B', value: 112 },
           { name: 'Product C', value: 78 },
           { name: 'Product D', value: 129 }
+        ]
+      },
+      {
+        name: 'cost',
+        data: [
+          { name: 'Jan', value: 35 },
+          { name: 'Feb', value: 32 },
+          { name: 'Mar', value: 57 },
+          { name: 'Apr', value: 84 },
+          { name: 'May', value: 28 },
+          { name: 'Jun', value: 68 }
         ]
       }
     ];
