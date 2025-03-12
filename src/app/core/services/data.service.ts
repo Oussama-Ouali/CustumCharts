@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DataPoint, SeriesData } from '../interfaces/chart-options';
+import { DataPoint, SeriesData, LineBarSeriesData } from '../interfaces/chart-options';
 
 @Injectable({
   providedIn: 'root'
@@ -75,5 +75,70 @@ export class DataService {
         ]
       }
     ];
+  }
+
+
+  getBarLineData(): LineBarSeriesData[] {
+    return [
+      {
+        name: 'Sales',
+        type: 'bar',
+        data: [
+          { name: 'Jan', value: 320 },
+          { name: 'Feb', value: 332 },
+          { name: 'Mar', value: 301 },
+          { name: 'Apr', value: 334 },
+          { name: 'May', value: 390 }
+        ]
+      },
+      {
+        name: 'money',
+        type: 'bar',
+        data: [
+          { name: 'Jan', value: 200 },
+          { name: 'Feb', value: 102 },
+          { name: 'Mar', value: 10 },
+          { name: 'Apr', value: 80 },
+          { name: 'May', value: 390 }
+        ]
+      },
+      {
+        name: 'Trend',
+        type: 'line',
+        data: [
+          { name: 'Jan', value: 320 },
+          { name: 'Feb', value: 332 },
+          { name: 'Mar', value: 301 },
+          { name: 'Apr', value: 334 },
+          { name: 'May', value: 390 }
+        ]
+      },
+      {
+        name: 'incomes',
+        type: 'line',
+        data: [
+          { name: 'Jan', value: 200 },
+          { name: 'Feb', value: 102 },
+          { name: 'Mar', value: 10 },
+          { name: 'Apr', value: 80 },
+          { name: 'May', value: 390 }
+        ]
+      }
+    ];
+  }
+
+  getDonutChartData() : SeriesData[] {
+    return [
+      {
+        name: 'Revenue Sources',
+        data: [
+          { name: 'Product A', value: 335 },
+          { name: 'Product B', value: 310 },
+          { name: 'Product C', value: 234 },
+          { name: 'Product D', value: 135 },
+          { name: 'Product E', value: 154 }
+        ]
+      }
+    ]
   }
 }

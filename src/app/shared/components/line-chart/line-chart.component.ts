@@ -116,8 +116,7 @@ export class LineChartComponent implements OnChanges {
         },
         data: s.data.map(d => d.value)
       })),
-      backgroundColor: 'rgba(255, 255, 255, 0.9)',
-      color: ['#3398DB', '#36CBCB', '#F6A23C', '#7B68EE', '#FF6347']
+      backgroundColor: 'rgba(255, 255, 255, 0.9)'
     };
   }
 }

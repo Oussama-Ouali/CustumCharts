@@ -4,16 +4,21 @@ import { EChartsOption } from 'echarts';
 import { ChartOptions, SeriesData } from '../../../core/interfaces/chart-options';
 import { CommonModule } from '@angular/common';
 
+
+export interface LineBarSeriesData extends SeriesData {
+  type: 'line' | 'bar';
+}
+
 @Component({
-  selector: 'app-bar-chart',
-  templateUrl: './bar-chart.component.html',
-  styleUrl: './bar-chart.component.scss',
+  selector: 'app-linebar-chart',
+  templateUrl: './linebar-chart.component.html',
+  styleUrl: './linebar-chart.component.scss',
   standalone: true,
-  imports: [CommonModule, NgxEchartsDirective]
+  imports: [NgxEchartsDirective]
 })
-export class BarChartComponent implements OnChanges {
+export class LineBarChartComponent implements OnChanges {
   @Input() options!: ChartOptions;
-  @Input() series: SeriesData[] = [];
+  @Input() series: LineBarSeriesData[] = [];
   @Input() width: string = '100%';
   @Input() height: string = '400px';
 
@@ -29,16 +34,18 @@ export class BarChartComponent implements OnChanges {
 
   private updateChartOptions() {
     const {
-      title = 'Bar Chart',
-      xAxisLabel = 'Products',
-      yAxisLabel = 'Sales',
+      title = 'Line Bar Chart',
+      xAxisLabel = 'Category',
+      yAxisLabel = 'Value',
+      smooth = true,
       legend = { show: true, position: 'top' },
       grid = { 
         top: 60, 
         bottom: 40, 
         left: '8%', 
         right: '5%' 
-      }
+      },
+      color
     } = this.options;
 
     const container = this.el.nativeElement.querySelector('.chart-container');
@@ -63,14 +70,14 @@ export class BarChartComponent implements OnChanges {
       tooltip: {
         trigger: 'axis',
         axisPointer: {
-          type: 'shadow'
+          type: 'cross'
         },
         formatter: function(params: any) {
           let result = `<div style="font-weight:bold;margin-bottom:5px;">${params[0].name}</div>`;
           params.forEach((param: any) => {
             result += `<div style="display:flex;justify-content:space-between;align-items:center;margin:3px 0;">
               <span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:${param.color};"></span>
-              <span>${param.seriesName}: </span>
+              <span>${param.seriesName} (${param.seriesType}): </span>
               <span style="font-weight:bold;margin-left:5px;">${param.value}</span>
             </div>`;
           });
@@ -84,8 +91,7 @@ export class BarChartComponent implements OnChanges {
         textStyle: {
           color: '#666'
         },
-        itemGap: 20,
-        icon: 'roundRect'
+        itemGap: 20
       },
       grid: {
         top: grid.top,
@@ -107,7 +113,7 @@ export class BarChartComponent implements OnChanges {
         },
         axisLine: {
           lineStyle: {
-            color: '#cc',
+            color: '#ccc',
             width: 2
           }
         },
@@ -135,7 +141,7 @@ export class BarChartComponent implements OnChanges {
         axisLine: {
           show: true,
           lineStyle: {
-            color: '#cc',
+            color: '#ccc',
             width: 2
           }
         },
@@ -149,26 +155,58 @@ export class BarChartComponent implements OnChanges {
           }
         }
       },
-      series: this.series.map(s => ({
-        name: s.name,
-        type: 'bar',
-        barWidth: '20%',
-        barGap: '10%',
-        itemStyle: {
-          borderRadius: [4, 4, 0, 0],
-          shadowColor: 'rgba(0, 0, 0, 0.1)',
-          shadowBlur: 4,
-          shadowOffsetY: 2
-        },
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetY: 5,
-            shadowColor: 'rgba(0, 0, 0, 0.3)'
-          }
-        },
-        data: s.data.map(d => d.value)
-      })),
+      series: this.series.map(s => {
+        if (s.type === 'line') {
+          return {
+            name: s.name,
+            type: 'line',
+            smooth: smooth,
+            symbolSize: 6,
+            itemStyle: {
+              shadowColor: 'rgba(0, 0, 0, 0.3)',
+              shadowBlur: 2
+            },
+            lineStyle: {
+              width: 3
+            },
+            emphasis: {
+              lineStyle: {
+                width: 4,
+                shadowBlur: 5,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              },
+              itemStyle: {
+                borderWidth: 2,
+                shadowBlur: 5,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            },
+            data: s.data.map(d => d.value)
+          };
+        } else {
+          return {
+            name: s.name,
+            type: 'bar',
+            barWidth: '20%',
+            barGap: '10%',
+            itemStyle: {
+              borderRadius: [4, 4, 0, 0],
+              shadowColor: 'rgba(0, 0, 0, 0.1)',
+              shadowBlur: 4,
+              shadowOffsetY: 2
+            },
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetY: 5,
+                shadowColor: 'rgba(0, 0, 0, 0.3)'
+              }
+            },
+            data: s.data.map(d => d.value)
+          };
+        }
+      }),
+      color: color,
       backgroundColor: 'rgba(255, 255, 255, 0.9)'
     };
   }

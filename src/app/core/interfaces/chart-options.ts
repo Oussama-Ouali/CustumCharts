@@ -3,6 +3,7 @@ export interface ChartOptions {
     xAxisLabel?: string;
     yAxisLabel?: string;
     smooth?: boolean;
+    type? : string;
     legend?: {
       show: boolean;
       position: 'top' | 'bottom';
@@ -25,4 +26,9 @@ export interface ChartOptions {
   export interface SeriesData {
     name: string;
     data: DataPoint[];
+    type ?: string | undefined;
+  }
+
+  export interface LineBarSeriesData extends SeriesData {
+    type: 'line' | 'bar';
   }

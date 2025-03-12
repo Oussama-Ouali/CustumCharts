@@ -15,4 +15,20 @@
       height="350px">
     </app-bar-chart>
   </div>
+  <div class="chart-wrapper">
+    <app-linebar-chart
+      [options]="lineBarChartOptions"
+      [series]="lineBarChartSeries"
+      width="80%"
+      height="350px">
+    </app-linebar-chart>
+  </div>
+  <div class="chart-wrapper">
+    <app-donut-chart
+      [options]="donutChartOptions"
+      [series]="donutChartSeries"
+      width="100%"
+      height="400px">
+    </app-donut-chart>
+  </div>
 </div>
